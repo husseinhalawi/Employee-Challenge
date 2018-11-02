@@ -1,0 +1,31 @@
+.popup {
+  border: 1px solid black;
+  width: fit-content;
+  border-radius: 30px;
+  background-color: papayawhip;
+  padding: 15px;
+}
+
+.employee-info__image {
+  width: 15%;
+  float: left;
+}
+
+.employee-info__name {
+  display: inline-block;
+  font-size: 24px;
+  margin: 4%;
+}
+
+.change-department__message {
+  width: -moz-fit-content;
+  display: inline-block;
+}
+
+.change-department__error {
+  font-size: 10px;
+  display: flex;
+  margin-left: 150px;
+  color: red;
+  font-weight: bold;
+}

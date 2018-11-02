@@ -1,0 +1,22 @@
+<div class="popup">
+  <div class="employee-info">
+    <img class="employee-info__image" src="{{ employee.imageUrl }}">
+    <p class="employee-info__name">{{ employee.fullName }}</p>
+  </div>
+
+  <div class="change-department">
+    <p class="change-department__message">Change Department</p>
+    <select (change)="newDepartment = true" [(ngModel)]="selectedDepartment">
+        <option disabled hidden [value]="selectUndefinedOptionValue"> Select Department </option>
+        <option *ngFor="let department of departments" value="{{ department }}">
+        {{ department }}
+      </option>
+    </select>
+    <label class="change-department__error" *ngIf="!newDepartment">Please Select Department</label>
+  </div>
+
+  <div>
+    <button (click)="changeDepartment()">Save</button>
+    <button (click)="cancelChange()">Cancel</button>
+  </div>
+</div>

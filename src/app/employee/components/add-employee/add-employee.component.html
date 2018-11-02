@@ -1,0 +1,87 @@
+<app-layout>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+    <mat-step [stepControl]="firstFormGroup">
+        <div class="step-number">
+          New Employee 1/4
+        </div>
+        <label>Employee General Information</label>
+
+        <div>
+          <label>Name</label>
+          <input [(ngModel)]="newEmployee.employeeInfo.name" type="text" required>
+          <label>Date Of Birth</label>
+          <input [(ngModel)]="newEmployee.employeeInfo.dob" type="date" required>
+          <label>Department</label>
+          <input [(ngModel)]="newEmployee.employeeInfo.department" type="text" required>
+        </div>
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="firstFormGroup">
+      <div class="step-number">
+        New Employee 2/4
+      </div>
+      <label>Dependents</label>
+      <button (click)="addDependent()">+ Add</button>
+      
+      <div #dependent>
+        <div *ngFor="let dependent of dependents; let index = index">
+          <input type="text" [ngModel]="dependent" (ngModelChange)="changeDependent(index, $event)"/>
+          <button (click)="remove(index)">X Remove</button>
+        </div>
+      </div>
+      <div>
+        <button (click)="getDependents()" mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <div class="step-number">
+        New Employee 3/4
+      </div>
+      <label>Benefits</label>
+
+      <div class="all-benefits">
+        <div class="available">
+          <label>Available Benefits</label>
+
+          <div (drop)="cancelBenefit($event)" (dragover)="allowDrop($event)">
+              <p 
+                draggable="true" 
+                (dragstart)="drag($event)"
+                *ngFor="let benefit of availableBenefits"
+              >{{ benefit }}</p>
+          </div>
+        </div>
+
+        <div class="assigned">
+          <label>Assigned Benefits</label>
+
+          <div (drop)="assignBenefit($event)" (dragover)="allowDrop($event)" >
+            <p 
+              draggable="true" 
+              (dragstart)="drag($event)"
+              *ngFor="let benefit of assignedBenefits"
+            >{{ benefit }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button (click)="getSelectedBenefits()" mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="step-number">
+        New Employee 4/4
+      </div>
+      <label>Summary</label>
+
+      <pre>{{ stringifyNewEmployee }}</pre>
+      <div>
+        <button mat-button (click)="stepper.reset()">Finish</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</app-layout>

@@ -1,0 +1,22 @@
+.layout {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.layout_title {
+  border: 1px solid black;
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: initial;
+  margin-bottom: 20px;
+
+  p {
+    margin: 0;
+  }
+}
+
+.layout_body {
+  border: 1px solid black;
+  padding: 20px;
+}
